@@ -1,0 +1,16 @@
+# Environment & secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Node / Playwright testing (not needed for deployment)
+node_modules/
+package.json
+package-lock.json
+playwright.config.js
+test-results/
+
+# Coding agent temp files
+.bob/

@@ -1,0 +1,861 @@
+/* ============================================================
+   Arth Setu — Global Stylesheet
+   Color scheme:
+     Deep blue  #1a3c6e  (navbar, headings)
+     Orange     #f97316  (CTAs, accents)
+     White      #ffffff  (backgrounds)
+     Light grey #f8fafc  (cards, sections)
+     Border     #e2e8f0
+     Text       #1e293b
+     Muted      #64748b
+   ============================================================ */
+
+/* ----- Reset & Base ----- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, "Segoe UI", system-ui, Roboto, sans-serif;
+  background: #ffffff;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ----- Sticky Navbar ----- */
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1a3c6e;
+  padding: 0 2rem;
+  height: 60px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.18);
+}
+
+.nav-brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #f97316;
+}
+
+#lang-toggle {
+  background: transparent;
+  border: 2px solid #f97316;
+  color: #f97316;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.3rem 0.85rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+#lang-toggle:hover {
+  background: #f97316;
+  color: #ffffff;
+}
+
+/* ----- Hero Section ----- */
+#hero {
+  background: linear-gradient(135deg, #1a3c6e 0%, #1e4d8c 100%);
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 1.5rem;
+}
+
+.hero-content {
+  max-width: 680px;
+}
+
+.hero-title {
+  font-size: 3.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  margin-bottom: 1rem;
+}
+
+.hero-tagline {
+  font-size: 1.2rem;
+  color: #bfdbfe;
+  margin-bottom: 2.2rem;
+  line-height: 1.7;
+}
+
+/* ----- Buttons ----- */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  text-align: center;
+}
+
+.btn-primary {
+  background: #f97316;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(249,115,22,0.4);
+}
+
+.btn-primary:hover {
+  background: #ea6c0e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(249,115,22,0.45);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: #1a3c6e;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background: #163264;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: #1a3c6e;
+  border: 2px solid #1a3c6e;
+}
+
+.btn-outline:hover {
+  background: #1a3c6e;
+  color: #ffffff;
+}
+
+/* ----- Sticky Scheme Context Bar ----- */
+#scheme-context-bar {
+  position: sticky;
+  top: 60px;         /* sits flush below the navbar */
+  z-index: 990;
+  background: #1e3a5f;
+  border-bottom: 2px solid #f97316;
+  padding: 0.55rem 2rem;
+}
+
+#scheme-context-bar.hidden {
+  display: none;
+}
+
+.context-bar-inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  font-size: 0.88rem;
+}
+
+.context-bar-label {
+  font-weight: 700;
+  color: #f97316;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+}
+
+.context-bar-name {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.context-bar-sep {
+  color: #94a3b8;
+}
+
+.context-bar-detail {
+  color: #cbd5e1;
+}
+
+/* ----- Sections ----- */
+section {
+  padding: 5rem 1.5rem;
+  scroll-margin-top: 60px;
+}
+
+section:nth-child(even) {
+  background: #f8fafc;
+}
+
+.section-inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.section-inner h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1a3c6e;
+  margin-bottom: 0.6rem;
+}
+
+.section-sub {
+  color: #64748b;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+/* ----- Card Component ----- */
+.card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #1a3c6e;
+  margin-bottom: 0.75rem;
+}
+
+.card-badge {
+  display: inline-block;
+  background: #eff6ff;
+  color: #1a3c6e;
+  border: 1px solid #bfdbfe;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.15rem 0.6rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.95rem;
+}
+
+.card-row:last-child {
+  border-bottom: none;
+}
+
+.card-label {
+  color: #64748b;
+}
+
+.card-value {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* ----- Placeholder Box (stub sections) ----- */
+.placeholder-box {
+  background: #f1f5f9;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  padding: 3rem;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+/* ----- Utility ----- */
+.hidden {
+  display: none !important;
+}
+
+/* ----- Alert / Not-eligible message ----- */
+.alert {
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.alert--error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #b91c1c;
+}
+
+/* ----- Scheme Result Card ----- */
+.result-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.75rem;
+  margin-top: 2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.result-card h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+  margin-bottom: 0.4rem;
+}
+
+.scheme-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #1a3c6e;
+  margin-bottom: 1.25rem;
+}
+
+.scheme-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.scheme-detail-item {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.65rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.detail-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.detail-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.scheme-description {
+  font-size: 0.93rem;
+  color: #475569;
+  margin-bottom: 1.5rem;
+  line-height: 1.65;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid #e2e8f0;
+  margin-bottom: 1.25rem;
+}
+
+.result-card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a3c6e;
+  margin-bottom: 0.75rem;
+}
+
+.explanation-text {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap;
+}
+
+/* ----- Scheme Form ----- */
+.scheme-form {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.75rem;
+  margin-bottom: 0;
+}
+
+/* ----- Form Elements ----- */
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #1e293b;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #1a3c6e;
+  box-shadow: 0 0 0 3px rgba(26,60,110,0.1);
+}
+
+/* Input error state */
+.form-group input.input-error,
+.form-group select.input-error {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220,38,38,0.1);
+}
+
+/* Per-field inline error message */
+.field-error {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.82rem;
+  color: #dc2626;
+  font-weight: 500;
+}
+.field-error.hidden { display: none; }
+
+/* Checkbox row — label inline beside the input */
+.form-group--checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.form-group--checkbox input[type="checkbox"] {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.form-group--checkbox label {
+  margin-bottom: 0;
+  font-size: 0.93rem;
+  cursor: pointer;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1.5rem;
+}
+
+/* ----- Spinner ----- */
+.spinner {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 3px solid #e2e8f0;
+  border-top-color: #1a3c6e;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ----- Calculator Results Card ----- */
+.calc-results-card {
+  margin-top: 1.5rem;
+  background: #f7f8fa;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.calc-result-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.calc-result-row:last-of-type {
+  border-bottom: none;
+}
+
+.calc-result-label {
+  font-size: 0.9rem;
+  color: #57606a;
+}
+
+.calc-result-value {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1a3c6e;
+}
+
+.calc-result-row:first-child .calc-result-value {
+  font-size: 1.25rem;
+  color: #e65c00;
+}
+
+.calc-moratorium-note {
+  padding: 0.65rem 1.25rem;
+  font-size: 0.82rem;
+  color: #57606a;
+  font-style: italic;
+  background: #fffbea;
+  border-top: 1px solid #fde68a;
+  margin: 0;
+}
+
+/* ===================================================
+   Partner Locator
+   =================================================== */
+
+/* Map — keep below navbar */
+#map {
+  z-index: 0;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 2rem;
+}
+
+/* Filter bar */
+/* Location status badge */
+.location-status {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.85rem;
+}
+.location-status.hidden { display: none; }
+.loc-fetching    { background: #e0f2fe; color: #0369a1; }
+.loc-sorted      { background: #d1fae5; color: #065f46; }
+.loc-unavailable { background: #f1f5f9; color: #475569; }
+
+/* City fallback row */
+.city-fallback-row {
+  background: #fef9c3;
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.city-fallback-row label {
+  display: block;
+  font-weight: 600;
+  color: #92400e;
+  margin-bottom: 0.4rem;
+}
+
+.city-fallback-controls {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.city-fallback-input {
+  flex: 1;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  max-width: 260px;
+}
+
+.partner-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.btn-filter {
+  padding: 0.45rem 1.1rem;
+  border-radius: 20px;
+  border: 2px solid #1a3c6e;
+  background: transparent;
+  color: #1a3c6e;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+
+.btn-filter:hover {
+  background: #e8eef7;
+}
+
+.btn-filter.active {
+  background: #1a3c6e;
+  color: #ffffff;
+}
+
+/* Partner card grid */
+#partner-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.partner-card {
+  background: #f7f8fa;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+}
+
+.partner-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+
+.partner-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #1f2328;
+  flex: 1;
+}
+
+/* Type badge — colour-coded */
+.partner-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.partner-badge--sca       { background: #dbeafe; color: #1e40af; }
+.partner-badge--psb       { background: #d1fae5; color: #065f46; }
+.partner-badge--rrb       { background: #ffedd5; color: #9a3412; }
+.partner-badge--nbfcmfi   { background: #ede9fe; color: #5b21b6; }
+
+/* Custom map markers */
+.map-marker-nearest {
+  width: 32px; height: 32px;
+  background: #f97316;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 900;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+  border: 2px solid #fff;
+}
+.map-marker-nearest span { transform: rotate(45deg); display: block; }
+
+.map-marker-default {
+  width: 24px; height: 24px;
+  background: #1a3c6e;
+  color: #fff;
+  font-size: 0.75rem;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  border: 2px solid #fff;
+}
+
+.map-marker-user {
+  width: 20px; height: 20px;
+  background: #3b82f6;
+  color: #fff;
+  font-size: 0.9rem;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.25);
+  border: 2px solid #fff;
+}
+
+.popup-nearest-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #f97316;
+  margin-bottom: 4px;
+}
+
+/* Matching popup badges */
+.popup-type { font-size: 0.78rem; font-weight: 700; padding: 1px 6px; border-radius: 10px; }
+.popup-type--sca     { background: #dbeafe; color: #1e40af; }
+.popup-type--psb     { background: #d1fae5; color: #065f46; }
+.popup-type--rrb     { background: #ffedd5; color: #9a3412; }
+.popup-type--nbfcmfi { background: #ede9fe; color: #5b21b6; }
+
+.partner-distance {
+  font-size: 0.82rem;
+  color: #1a3c6e;
+  font-weight: 600;
+  margin: 0.15rem 0;
+}
+
+.partner-city,
+.partner-phone {
+  font-size: 0.84rem;
+  color: #57606a;
+  margin: 0.2rem 0;
+}
+
+/* Accepting / not-accepting status */
+.status-open  { font-size: 0.82rem; color: #065f46; margin: 0.2rem 0; }
+.status-closed { font-size: 0.82rem; color: #9a3412; margin: 0.2rem 0; }
+
+.partner-card--closed {
+  opacity: 0.7;
+  border-left: 3px solid #f97316;
+}
+
+/* Popup status badges */
+.status-badge { font-size: 0.72rem; font-weight: 700; padding: 1px 6px; border-radius: 10px; }
+.status-badge--open   { background: #d1fae5; color: #065f46; }
+.status-badge--closed { background: #ffedd5; color: #9a3412; }
+
+.partner-loans {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.6rem;
+}
+
+.loan-tag-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-right: 0.25rem;
+}
+
+.loan-tag {
+  background: #e5e7eb;
+  color: #374151;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.55rem;
+  border-radius: 10px;
+}
+
+.partner-empty {
+  color: #57606a;
+  font-style: italic;
+  grid-column: 1 / -1;
+  padding: 1rem 0;
+}
+
+/* ----- Footer ----- */
+#footer {
+  background: #1a3c6e;
+  color: #94a3b8;
+  text-align: center;
+  padding: 1.5rem 1rem;
+  font-size: 0.88rem;
+}
+
+/* ----- Responsive — 768 px breakpoint ----- */
+@media (max-width: 768px) {
+  #navbar {
+    padding: 0 1rem;
+    flex-wrap: wrap;
+    height: auto;
+    gap: 0.5rem;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .nav-links {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-tagline {
+    font-size: 1rem;
+  }
+
+  .section-inner h2 {
+    font-size: 1.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .scheme-details {
+    grid-template-columns: 1fr;
+  }
+
+  #partner-list {
+    grid-template-columns: 1fr;
+  }
+
+  section {
+    padding: 3rem 1rem;
+  }
+}

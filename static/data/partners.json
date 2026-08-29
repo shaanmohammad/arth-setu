@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "name": "Delhi Gramin Vikas SCA",
+    "type": "SCA",
+    "lat": 28.6139,
+    "lng": 77.2090,
+    "city": "New Delhi",
+    "schemeIds": ["micro", "term"],
+    "acceptingApplications": true,
+    "phone": "+91-XXXXXXXXXX"
+  },
+  {
+    "id": 2,
+    "name": "Rajasthan SC Welfare SCA",
+    "type": "SCA",
+    "lat": 26.9124,
+    "lng": 75.7873,
+    "city": "Jaipur",
+    "schemeIds": ["micro", "edu"],
+    "acceptingApplications": true,
+    "phone": "+91-XXXXXXXXXX"
+  },
+  {
+    "id": 3,
+    "name": "State Bank of India (SC/ST Cell)",
+    "type": "PSB",
+    "lat": 19.0760,
+    "lng": 72.8777,
+    "city": "Mumbai",
+    "schemeIds": ["term", "edu"],
+    "acceptingApplications": true,
+    "phone": "+91-XXXXXXXXXX"
+  },
+  {
+    "id": 4,
+    "name": "Punjab National Bank",
+    "type": "PSB",
+    "lat": 22.5726,
+    "lng": 88.3639,
+    "city": "Kolkata",
+    "schemeIds": ["term", "micro"],
+    "acceptingApplications": false,
+    "phone": "+91-XXXXXXXXXX"
+  },
+  {
+    "id": 5,
+    "name": "Canara Bank",
+    "type": "PSB",
+    "lat": 13.0827,
+    "lng": 80.2707,
+    "city": "Chennai",
+    "schemeIds": ["term", "edu", "micro"],
+    "acceptingApplications": true,
+    "phone": "+91-XXXXXXXXXX"
+  },
+  {
+    "id": 6,
+    "name": "Uttar Pradesh Gramin Bank",
+    "type": "RRB",
+    "lat": 26.8467,
+    "lng": 80.9462,
+    "city": "Lucknow",
+    "schemeIds": ["micro", "term"],
+    "acceptingApplications": true,
+    "phone": "+91-XXXXXXXXXX"
+  },
+  {
+    "id": 7,
+    "name": "Madhya Pradesh Grameena Bank",
+    "type": "RRB",
+    "lat": 23.2599,
+    "lng": 77.4126,
+    "city": "Bhopal",
+    "schemeIds": ["micro", "edu"],
+    "acceptingApplications": false,
+    "phone": "+91-XXXXXXXXXX"
+  },
+  {
+    "id": 8,
+    "name": "Arohan Financial Services",
+    "type": "NBFC-MFI",
+    "lat": 17.3850,
+    "lng": 78.4867,
+    "city": "Hyderabad",
+    "schemeIds": ["micro", "term"],
+    "acceptingApplications": true,
+    "phone": "+91-XXXXXXXXXX"
+  },
+  {
+    "id": 9,
+    "name": "Annapurna Finance Pvt. Ltd.",
+    "type": "NBFC-MFI",
+    "lat": 23.0225,
+    "lng": 72.5714,
+    "city": "Ahmedabad",
+    "schemeIds": ["micro", "term"],
+    "acceptingApplications": true,
+    "phone": "+91-XXXXXXXXXX"
+  },
+  {
+    "id": 10,
+    "name": "Fusion Microfinance Ltd.",
+    "type": "NBFC-MFI",
+    "lat": 18.5204,
+    "lng": 73.8567,
+    "city": "Pune",
+    "schemeIds": ["micro"],
+    "acceptingApplications": true,
+    "phone": "+91-XXXXXXXXXX"
+  }
+]

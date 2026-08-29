@@ -1,0 +1,47 @@
+{
+  "micro": {
+    "id": "micro",
+    "name": "Micro Finance Scheme",
+    "maxProjectCost": 155555,
+    "maxLoan": 140000,
+    "rate": 6.5,
+    "tenureMonths": 36,
+    "moratoriumMonths": 3,
+    "coveragePercent": 90,
+    "eligibility": {
+      "maxAnnualIncome": 500000,
+      "projectType": ["business", "agriculture"]
+    },
+    "description": "Ideal for small business and agricultural needs. Covers up to ₹1.40 lakh at a low interest rate with a short moratorium period."
+  },
+  "term": {
+    "id": "term",
+    "name": "Term Loan Scheme",
+    "maxProjectCost": 5555555,
+    "maxLoan": 5000000,
+    "rate": 8.0,
+    "tenureMonths": 60,
+    "moratoriumMonths": 6,
+    "coveragePercent": 90,
+    "eligibility": {
+      "maxAnnualIncome": 500000,
+      "projectType": ["business", "agriculture"]
+    },
+    "description": "Suitable for medium-scale business and agri-allied projects. Covers up to ₹50 lakh with a 6-month repayment holiday."
+  },
+  "edu": {
+    "id": "edu",
+    "name": "Educational Loan Scheme",
+    "maxProjectCost": 2222222,
+    "maxLoan": 2000000,
+    "rate": 8.0,
+    "tenureMonths": 60,
+    "moratoriumMonths": 12,
+    "coveragePercent": 90,
+    "eligibility": {
+      "maxAnnualIncome": 500000,
+      "projectType": ["education"]
+    },
+    "description": "Designed for higher education financing. Covers up to ₹20 lakh with a 12-month moratorium (or course duration + 1 year)."
+  }
+}

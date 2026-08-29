@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arth Setu — Financial Scheme Guide</title>
+  <!-- Leaflet CSS (needed for Sub-Task 5) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+  <!-- ===== Sticky Navbar ===== -->
+  <nav id="navbar">
+    <div class="nav-brand">Arth Setu</div>
+    <ul class="nav-links">
+      <li><a href="#recommender" data-i18n="nav_recommender">Scheme Finder</a></li>
+      <li><a href="#calculator" data-i18n="nav_calculator">EMI Calculator</a></li>
+      <li><a href="#locator" data-i18n="nav_locator">Partner Locator</a></li>
+    </ul>
+    <button id="lang-toggle" aria-label="Toggle language">EN | हिं</button>
+  </nav>
+
+  <!-- ===== Sticky Scheme Context Bar (hidden until recommendation) ===== -->
+  <div id="scheme-context-bar" class="hidden">
+    <div class="context-bar-inner">
+      <span class="context-bar-label" data-i18n="context_bar_label">Recommended:</span>
+      <span id="ctx-scheme-name" class="context-bar-name"></span>
+      <span class="context-bar-sep">·</span>
+      <span id="ctx-max-loan" class="context-bar-detail"></span>
+      <span class="context-bar-sep">·</span>
+      <span id="ctx-rate" class="context-bar-detail"></span>
+      <span class="context-bar-sep">·</span>
+      <span id="ctx-moratorium" class="context-bar-detail"></span>
+    </div>
+  </div>
+
+  <!-- ===== Hero Section ===== -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1 class="hero-title" data-i18n="hero_title">Arth Setu</h1>
+      <p class="hero-tagline" data-i18n="hero_tagline">
+        Bridging beneficiaries with the right financial scheme
+      </p>
+      <a href="#recommender" class="btn btn-primary" data-i18n="hero_cta">
+        Check Your Scheme
+      </a>
+    </div>
+  </section>
+
+  <!-- ===== Scheme Recommender Section ===== -->
+  <section id="recommender">
+    <div class="section-inner">
+      <h2 data-i18n="recommender_heading">Smart Scheme Recommender</h2>
+      <p class="section-sub" data-i18n="recommender_sub">
+        Answer a few questions and we'll match you to the right government credit scheme.
+      </p>
+
+      <!-- Recommender Form -->
+      <!-- Recommender validation error (hidden by default) -->
+      <div id="recommender-error" class="alert alert--error hidden"></div>
+
+      <form id="recommender-form" class="scheme-form" novalidate>
+
+        <!-- Project Type -->
+        <div class="form-group">
+          <label for="project-type" data-i18n="label_project_type">Project Type</label>
+          <select id="project-type" name="projectType" required>
+            <option value="business"    data-i18n="opt_business">Business</option>
+            <option value="education"   data-i18n="opt_education">Education</option>
+            <option value="agriculture" data-i18n="opt_agriculture">Agriculture</option>
+          </select>
+        </div>
+
+        <!-- Estimated Project Cost -->
+        <div class="form-group">
+          <label for="project-cost" data-i18n="label_project_cost">Estimated Project Cost (₹)</label>
+          <input type="number" id="project-cost" name="projectCost" min="1" placeholder="e.g. 100000" required />
+          <span class="field-error hidden" id="err-project-cost"></span>
+        </div>
+
+        <!-- Annual Family Income -->
+        <div class="form-group">
+          <label for="annual-income" data-i18n="label_annual_income">Annual Family Income (₹)</label>
+          <input type="number" id="annual-income" name="annualIncome" min="1" placeholder="e.g. 300000" required />
+          <span class="field-error hidden" id="err-annual-income"></span>
+        </div>
+
+        <button id="findMyScheme-btn" type="submit" class="btn btn-primary" data-i18n="submit_btn">Find My Scheme</button>
+      </form>
+
+      <!-- Not-eligible message (hidden by default) -->
+      <div id="not-eligible-msg" class="alert alert--error hidden" data-i18n="not_eligible_msg">
+        Sorry, based on the details provided you do not qualify for any scheme under this programme.
+      </div>
+
+      <!-- Result Card (hidden by default) -->
+      <div id="scheme-result" class="result-card hidden">
+        <h3 data-i18n="scheme_name">Recommended Scheme</h3>
+        <p id="result-scheme-name" class="scheme-title"></p>
+
+        <div class="scheme-details">
+          <div class="scheme-detail-item">
+            <span class="detail-label" data-i18n="scheme_max_loan">Max Loan Amount</span>
+            <span id="result-max-loan" class="detail-value"></span>
+          </div>
+          <div class="scheme-detail-item">
+            <span class="detail-label" data-i18n="scheme_rate">Interest Rate (p.a.)</span>
+            <span id="result-rate" class="detail-value"></span>
+          </div>
+          <div class="scheme-detail-item">
+            <span class="detail-label" data-i18n="scheme_moratorium">Moratorium Period</span>
+            <span id="result-moratorium" class="detail-value"></span>
+          </div>
+          <div class="scheme-detail-item">
+            <span class="detail-label" data-i18n="scheme_coverage">Coverage</span>
+            <span id="result-coverage" class="detail-value"></span>
+          </div>
+        </div>
+
+        <p id="result-description" class="scheme-description"></p>
+
+        <hr class="divider" />
+        <h4 data-i18n="why_this_scheme">Why this scheme?</h4>
+
+        <!-- Explanation area -->
+        <div id="explanation-container">
+          <div id="explanation-spinner" class="spinner hidden"></div>
+          <p id="explanation-text" class="explanation-text"></p>
+        </div>
+
+        <!-- Pre-fill Calculator button (auto-fill now happens automatically; kept as scroll shortcut) -->
+        <button id="prefill-btn" class="btn btn-secondary hidden" data-i18n="prefill_btn">
+          Go to EMI Calculator ↓
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== EMI Calculator Section ===== -->
+  <section id="calculator">
+    <div class="section-inner">
+      <h2 data-i18n="calculator_heading">EMI Financial Calculator</h2>
+      <p class="section-sub" data-i18n="calculator_sub">
+        Estimate your monthly repayment including moratorium period.
+      </p>
+
+      <!-- Calculator Form -->
+      <form id="calc-form" class="scheme-form" novalidate>
+        <div class="form-grid">
+
+          <!-- Loan Amount -->
+          <div class="form-group">
+            <label for="calc-loan-amount" data-i18n="label_loan_amount">Loan Amount (₹)</label>
+            <input type="number" id="calc-loan-amount" name="loanAmount" min="1" placeholder="e.g. 500000" required />
+          </div>
+
+          <!-- Annual Interest Rate -->
+          <div class="form-group">
+            <label for="calc-interest-rate" data-i18n="label_interest_rate">Annual Interest Rate (%)</label>
+            <input type="number" id="calc-interest-rate" name="interestRate" min="0.1" step="0.1" placeholder="e.g. 8" required />
+          </div>
+
+          <!-- Loan Tenure -->
+          <div class="form-group">
+            <label for="calc-tenure" data-i18n="label_tenure">Loan Tenure (months)</label>
+            <input type="number" id="calc-tenure" name="tenure" min="1" placeholder="e.g. 60" required />
+          </div>
+
+          <!-- Moratorium Period -->
+          <div class="form-group">
+            <label for="calc-moratorium" data-i18n="label_moratorium">Moratorium Period (months)</label>
+            <input type="number" id="calc-moratorium" name="moratorium" min="0" placeholder="0" />
+          </div>
+
+        </div>
+
+        <!-- Inline validation error -->
+        <div id="calc-error" class="alert alert--error hidden"></div>
+
+        <button type="submit" class="btn btn-primary" data-i18n="calculate_btn">Calculate EMI</button>
+      </form>
+
+      <!-- Results Card (hidden until calculated) -->
+      <div id="calc-results" class="calc-results-card hidden">
+        <div class="calc-result-row">
+          <span class="calc-result-label" data-i18n="result_emi">Monthly EMI</span>
+          <span id="result-emi-value" class="calc-result-value"></span>
+        </div>
+        <div class="calc-result-row">
+          <span class="calc-result-label" data-i18n="result_total_interest">Total Interest Payable</span>
+          <span id="result-total-interest-value" class="calc-result-value"></span>
+        </div>
+        <div class="calc-result-row">
+          <span class="calc-result-label" data-i18n="result_total_payable">Total Repayment Amount</span>
+          <span id="result-total-payable-value" class="calc-result-value"></span>
+        </div>
+        <p class="calc-moratorium-note" id="calc-moratorium-note" data-i18n="calc_moratorium_note">
+          EMI starts after the moratorium period ends.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Partner Locator Section ===== -->
+  <section id="locator">
+    <div class="section-inner">
+      <h2 data-i18n="locator_heading">Find a Channel Partner Near You</h2>
+      <p class="section-sub" data-i18n="locator_sub">
+        Find the nearest bank, SCA, or NBFC-MFI in your area.
+      </p>
+
+      <!-- Location status indicator -->
+      <div id="location-status" class="location-status hidden"></div>
+
+      <!-- City fallback (shown only when geolocation is denied) -->
+      <div id="city-fallback-row" class="city-fallback-row hidden">
+        <label for="city-fallback-input" data-i18n="city_fallback_label">Enter your city for distance sorting:</label>
+        <div class="city-fallback-controls">
+          <input type="text" id="city-fallback-input" class="city-fallback-input"
+                 placeholder="e.g. Mumbai" autocomplete="off" />
+          <button type="button" id="city-fallback-btn" class="btn btn-secondary" data-i18n="city_fallback_btn">Set Location</button>
+        </div>
+        <span id="city-fallback-msg" class="field-error"></span>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="partner-filter-bar" role="group" aria-label="Filter partners by type">
+        <button class="btn-filter active" data-filter="all"      data-i18n="filter_all">All</button>
+        <button class="btn-filter"        data-filter="SCA"      data-i18n="filter_sca">SCA</button>
+        <button class="btn-filter"        data-filter="PSB"      data-i18n="filter_psb">PSB</button>
+        <button class="btn-filter"        data-filter="RRB"      data-i18n="filter_rrb">RRB</button>
+        <button class="btn-filter"        data-filter="NBFC-MFI" data-i18n="filter_nbfc">NBFC-MFI</button>
+      </div>
+
+      <!-- Leaflet Map -->
+      <div id="map" style="height: 450px; width: 100%;"></div>
+
+      <!-- Partner Cards List -->
+      <div id="partner-list"></div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer id="footer">
+    <p>
+      <span data-i18n="footer_text">Arth Setu</span>
+      &nbsp;|&nbsp;
+      <span data-i18n="footer_credit">Built for Hackathon</span>
+    </p>
+  </footer>
+
+  <!-- Leaflet JS (needed for Sub-Task 5) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
