@@ -90,10 +90,14 @@ const translations = {
     // Footer
     footer_text:   'Arth Setu',
     footer_credit: 'Built for Hackathon',
+    footer_tagline: 'Bridging Beneficiaries with the Right Financial Scheme',
+    footer_source:  'Schemes data sourced from NSFDC & NABARD guidelines',
 
     // Recommender result area
     why_this_scheme:     'Why this scheme?',
     not_eligible_msg:    'Sorry, based on the details provided you do not qualify for any scheme under this programme.',
+    not_eligible_title:  'No Scheme Match Found',
+    not_eligible_hint:   'Try adjusting your project cost or income, or explore a different project type.',
 
     // City fallback
     city_fallback_label: 'Enter your city for distance sorting:',
@@ -126,6 +130,51 @@ const translations = {
     err_tenure_required:     'Please enter the loan tenure.',
     err_tenure_positive:     'Loan tenure must be at least 1 month.',
     err_moratorium_negative: 'Moratorium period cannot be negative.',
+
+    // Feature strip
+    feature1_title: 'Match Your Scheme',
+    feature1_desc:  'Answer 3 questions, get your best-fit government loan',
+    feature2_title: 'Calculate EMI',
+    feature2_desc:  'Estimate monthly repayments with moratorium support',
+    feature3_title: 'Find Partners',
+    feature3_desc:  'Locate the nearest bank or MFI accepting applications',
+
+    // Section eyebrows
+    eyebrow_recommender: 'Smart Matching',
+    eyebrow_calculator:  'Financial Planning',
+    eyebrow_locator:     'Channel Network',
+
+    // Partner cards / map popups
+    partner_accepting:     'Accepting Applications',
+    partner_not_accepting: 'Not Accepting Applications',
+    partner_nearest:     'Nearest to you',
+    partner_distance_km: 'Distance',
+    partner_schemes_label: 'Schemes',
+    partner_away:        'away',
+    partner_empty:       'No partners found for this filter.',
+    partner_load_error:  'Could not load partner data.',
+
+    // Location status
+    loc_fetching:    '📡 Detecting your location…',
+    loc_sorted:      '📍 Sorted by your current location (nearest first)',
+    loc_unavailable: '📍 Location unavailable — partners in default order',
+    loc_your_location: 'Your location',
+
+    // Input placeholders
+    placeholder_cost:       'e.g. 100000',
+    placeholder_income:     'e.g. 300000',
+    placeholder_loan:       'e.g. 500000',
+    placeholder_rate:       'e.g. 8',
+    placeholder_tenure:     'e.g. 60',
+    placeholder_moratorium: '0',
+    placeholder_city:       'e.g. Mumbai',
+
+    // Hero image alt
+    hero_img_alt: 'Students, entrepreneurs and farmers benefiting from government schemes',
+
+    // result card
+    result_total_interest: 'Total Interest Payable',
+    result_total_payable:  'Total Repayment Amount',
   },
 
   hi: {
@@ -206,10 +255,14 @@ const translations = {
     // Footer
     footer_text:   'अर्थ सेतु',
     footer_credit: 'हैकाथॉन के लिए निर्मित',
+    footer_tagline: 'लाभार्थियों को सही वित्तीय योजना से जोड़ना',
+    footer_source:  'योजना डेटा NSFDC और NABARD दिशानिर्देशों से',
 
     // Recommender result area
     why_this_scheme:     'यह योजना क्यों?',
     not_eligible_msg:    'क्षमा करें, दिए गए विवरण के आधार पर आप इस कार्यक्रम की किसी भी योजना के लिए पात्र नहीं हैं।',
+    not_eligible_title:  'कोई योजना नहीं मिली',
+    not_eligible_hint:   'अपनी परियोजना लागत या आय समायोजित करें, या कोई अलग परियोजना प्रकार आज़माएं।',
 
     // City fallback
     city_fallback_label: 'दूरी क्रमबद्ध करने के लिए अपना शहर दर्ज करें:',
@@ -242,6 +295,51 @@ const translations = {
     err_tenure_required:     'कृपया ऋण अवधि दर्ज करें।',
     err_tenure_positive:     'ऋण अवधि कम से कम 1 महीना होनी चाहिए।',
     err_moratorium_negative: 'मोरेटोरियम अवधि नकारात्मक नहीं हो सकती।',
+
+    // Feature strip
+    feature1_title: 'अपनी योजना खोजें',
+    feature1_desc:  '3 सवालों के जवाब दें, सबसे उपयुक्त सरकारी ऋण पाएं',
+    feature2_title: 'ईएमआई गणना करें',
+    feature2_desc:  'मोरेटोरियम सहित मासिक किस्त का अनुमान लगाएं',
+    feature3_title: 'भागीदार खोजें',
+    feature3_desc:  'निकटतम बैंक या एमएफआई जो आवेदन स्वीकार कर रहा हो',
+
+    // Section eyebrows
+    eyebrow_recommender: 'स्मार्ट मिलान',
+    eyebrow_calculator:  'वित्तीय योजना',
+    eyebrow_locator:     'चैनल नेटवर्क',
+
+    // Partner cards / map popups
+    partner_accepting:     'आवेदन स्वीकार कर रहे हैं',
+    partner_not_accepting: 'आवेदन स्वीकार नहीं',
+    partner_nearest:       'आपके सबसे निकट',
+    partner_distance_km:   'दूरी',
+    partner_schemes_label: 'योजनाएं',
+    partner_away:          'दूर',
+    partner_empty:         'इस फ़िल्टर के लिए कोई भागीदार नहीं मिला।',
+    partner_load_error:    'भागीदार डेटा लोड नहीं हो सका।',
+
+    // Location status
+    loc_fetching:    '📡 आपका स्थान पता लगाया जा रहा है…',
+    loc_sorted:      '📍 आपके वर्तमान स्थान के अनुसार क्रमबद्ध (निकटतम पहले)',
+    loc_unavailable: '📍 स्थान अनुपलब्ध — भागीदार डिफ़ॉल्ट क्रम में',
+    loc_your_location: 'आपका स्थान',
+
+    // Input placeholders
+    placeholder_cost:       'जैसे 100000',
+    placeholder_income:     'जैसे 300000',
+    placeholder_loan:       'जैसे 500000',
+    placeholder_rate:       'जैसे 8',
+    placeholder_tenure:     'जैसे 60',
+    placeholder_moratorium: '0',
+    placeholder_city:       'जैसे मुंबई',
+
+    // Hero image alt
+    hero_img_alt: 'छात्र, उद्यमी और किसान सरकारी योजनाओं से लाभान्वित',
+
+    // result card
+    result_total_interest: 'कुल देय ब्याज',
+    result_total_payable:  'कुल पुनर्भुगतान राशि',
   },
 };
 
@@ -313,6 +411,7 @@ function renderPartners(typeFilter, schemeId) {
   });
 
   // Place user location dot if coords available
+  const t0 = translations[currentLang];
   if (userCoords) {
     const userIcon = L.divIcon({
       className: '',
@@ -321,7 +420,7 @@ function renderPartners(typeFilter, schemeId) {
       iconAnchor: [10, 10],
     });
     L.marker([userCoords.lat, userCoords.lng], { icon: userIcon, zIndexOffset: 2000 })
-      .bindTooltip('Your location', { permanent: false })
+      .bindTooltip(t0.loc_your_location, { permanent: false })
       .addTo(map);
   }
 
@@ -330,12 +429,12 @@ function renderPartners(typeFilter, schemeId) {
     const isNearest = userCoords && idx === 0;
     const schemeTags = partner.schemeIds.map(id => `<span class="loan-tag">${id}</span>`).join(' ');
     const statusBadge = partner.acceptingApplications
-      ? '<span class="status-badge status-badge--open">Accepting Applications</span>'
-      : '<span class="status-badge status-badge--closed">Not Accepting</span>';
+      ? `<span class="status-badge status-badge--open">${t0.partner_accepting}</span>`
+      : `<span class="status-badge status-badge--closed">${t0.partner_not_accepting}</span>`;
     const distLine = partner.distKm != null
-      ? `<b>Distance:</b> ${partner.distKm < 10 ? partner.distKm.toFixed(1) : Math.round(partner.distKm)} km<br/>`
+      ? `<b>${t0.partner_distance_km}:</b> ${partner.distKm < 10 ? partner.distKm.toFixed(1) : Math.round(partner.distKm)} km<br/>`
       : '';
-    const nearestLabel = isNearest ? '<div class="popup-nearest-label">📍 Nearest to you</div>' : '';
+    const nearestLabel = isNearest ? `<div class="popup-nearest-label">📍 ${t0.partner_nearest}</div>` : '';
     const popupHtml = `
       <div class="partner-popup">
         ${nearestLabel}
@@ -345,7 +444,7 @@ function renderPartners(typeFilter, schemeId) {
         📍 ${partner.city}<br/>
         ${distLine}
         📞 ${partner.phone}<br/>
-        <b>Schemes:</b> ${schemeTags}
+        <b>${t0.partner_schemes_label}:</b> ${schemeTags}
       </div>`;
     const marker = L.marker([partner.lat, partner.lng], {
       icon: isNearest ? nearestIcon : defaultIcon,
@@ -364,14 +463,15 @@ function renderPartners(typeFilter, schemeId) {
   const listEl = document.getElementById('partner-list');
   if (!listEl) return;
 
+  const t1 = translations[currentLang];
   if (filtered.length === 0) {
-    listEl.innerHTML = '<p class="partner-empty">No partners found for this filter.</p>';
+    listEl.innerHTML = `<p class="partner-empty">${t1.partner_empty}</p>`;
     return;
   }
 
   listEl.innerHTML = filtered.map(p => {
     const distHtml = p.distKm != null
-      ? `<p class="partner-distance">📏 ${p.distKm < 10 ? p.distKm.toFixed(1) : Math.round(p.distKm)} km away</p>`
+      ? `<p class="partner-distance">📏 ${p.distKm < 10 ? p.distKm.toFixed(1) : Math.round(p.distKm)} km ${t1.partner_away}</p>`
       : '';
     return `
     <div class="partner-card${p.acceptingApplications ? '' : ' partner-card--closed'}">
@@ -383,10 +483,10 @@ function renderPartners(typeFilter, schemeId) {
       ${distHtml}
       <p class="partner-phone">📞 ${p.phone}</p>
       <p class="${p.acceptingApplications ? 'status-open' : 'status-closed'}">
-        ${p.acceptingApplications ? '✅ Accepting Applications' : '🚫 Not Accepting Applications'}
+        ${p.acceptingApplications ? `✅ ${t1.partner_accepting}` : `🚫 ${t1.partner_not_accepting}`}
       </p>
       <div class="partner-loans">
-        <span class="loan-tag-label" data-i18n="partner_loans">Schemes</span>
+        <span class="loan-tag-label">${t1.partner_schemes_label}</span>
         ${p.schemeIds.map(id => `<span class="loan-tag">${id}</span>`).join('')}
       </div>
     </div>`;
@@ -400,10 +500,11 @@ function setLocationStatus(state) {
   // state: 'fetching' | 'sorted' | 'unavailable'
   const el = document.getElementById('location-status');
   if (!el) return;
+  const t = translations[currentLang];
   const msgs = {
-    fetching:    { text: '📡 Detecting your location…',                       cls: 'loc-fetching'   },
-    sorted:      { text: '📍 Sorted by your current location (nearest first)', cls: 'loc-sorted'     },
-    unavailable: { text: '📍 Location unavailable — partners in default order', cls: 'loc-unavailable'},
+    fetching:    { text: t.loc_fetching,    cls: 'loc-fetching'   },
+    sorted:      { text: t.loc_sorted,      cls: 'loc-sorted'     },
+    unavailable: { text: t.loc_unavailable, cls: 'loc-unavailable'},
   };
   const m = msgs[state];
   if (!m) return;
@@ -454,7 +555,7 @@ function initMap() {
     })
     .catch(() => {
       const listEl = document.getElementById('partner-list');
-      if (listEl) listEl.innerHTML = '<p class="partner-empty">Could not load partner data.</p>';
+      if (listEl) listEl.innerHTML = `<p class="partner-empty">${translations[currentLang].partner_load_error}</p>`;
     });
 }
 
@@ -564,6 +665,17 @@ function applyLanguage(lang) {
     }
   });
 
+  // Handle attribute translations (e.g. data-i18n-attr="alt:hero_img_alt")
+  document.querySelectorAll('[data-i18n-attr]').forEach(el => {
+    const pairs = el.getAttribute('data-i18n-attr').split(',');
+    pairs.forEach(pair => {
+      const [attr, key] = pair.trim().split(':');
+      if (attr && key && dict[key] !== undefined) {
+        el.setAttribute(attr, dict[key]);
+      }
+    });
+  });
+
   // Update the lang toggle button label
   const toggle = document.getElementById('lang-toggle');
   if (toggle) {
@@ -603,6 +715,34 @@ function applyLanguage(lang) {
 
     const ctxMoraEl = document.getElementById('ctx-moratorium');
     if (ctxMoraEl) ctxMoraEl.textContent = currentScheme.moratoriumMonths + ' ' + dict.unit_mo_moratorium;
+  }
+
+  // Update input placeholders
+  const placeholderMap = {
+    'project-cost':        dict.placeholder_cost,
+    'annual-income':       dict.placeholder_income,
+    'calc-loan-amount':    dict.placeholder_loan,
+    'calc-interest-rate':  dict.placeholder_rate,
+    'calc-tenure':         dict.placeholder_tenure,
+    'calc-moratorium':     dict.placeholder_moratorium,
+    'city-fallback-input': dict.placeholder_city,
+  };
+  Object.entries(placeholderMap).forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if (el && val !== undefined) el.placeholder = val;
+  });
+
+  // Update hero image alt
+  const heroImg = document.querySelector('.hero-image');
+  if (heroImg && dict.hero_img_alt) heroImg.alt = dict.hero_img_alt;
+
+  // Re-render location status bar if visible
+  const locEl = document.getElementById('location-status');
+  if (locEl && !locEl.classList.contains('hidden')) {
+    const cls = [...locEl.classList].find(c => c.startsWith('loc-') && c !== 'location-status');
+    if (cls === 'loc-fetching')    setLocationStatus('fetching');
+    else if (cls === 'loc-sorted') setLocationStatus('sorted');
+    else                           setLocationStatus('unavailable');
   }
 
   // Update <html lang> attribute for accessibility
@@ -659,6 +799,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const next = currentLang === 'en' ? 'hi' : 'en';
       localStorage.setItem('arth-setu-lang', next);
       applyLanguage(next);
+      // Re-render partner cards so dynamic text (badges, distance, status) switches language
+      if (allPartners.length > 0) renderPartners(currentTypeFilter);
     });
   }
 
@@ -734,11 +876,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const scheme = recommendScheme({ projectType, cost, income });
 
       if (!scheme) {
-        // Not eligible — show message, hide result card
+        // Not eligible — show message, hide result card AND context bar
         notEligible.classList.remove('hidden');
         resultCard.classList.add('hidden');
         prefillBtn.classList.add('hidden');
         currentScheme = null;
+        document.getElementById('scheme-context-bar').classList.add('hidden');
+        renderPartners(currentTypeFilter, null);   // reset partner list to unfiltered
         return;
       }
 
