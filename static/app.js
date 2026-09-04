@@ -68,10 +68,12 @@ const translations = {
     result_total_payable:    'Total Payable',
 
     // Scheme names
-    scheme_micro:     'Micro Finance Scheme',
-    scheme_term:      'Term Loan Scheme',
-    scheme_education: 'Educational Loan Scheme',
-    not_eligible:     'Not Eligible',
+    scheme_micro:      'Micro Finance Scheme',
+    scheme_aajeevika:  'Aajeevika Micro-Finance Yojana',
+    scheme_udyam:      'Udyam Nidhi Yojana',
+    scheme_term:       'Term Loan Scheme',
+    scheme_education:  'Educational Loan Scheme',
+    not_eligible:      'Not Eligible',
 
     // Partner locator filters
     filter_all:      'All',
@@ -182,10 +184,12 @@ const translations = {
     result_total_payable:  'कुल देय राशि',
 
     // Scheme names
-    scheme_micro:     'माइक्रो फाइनेंस योजना',
-    scheme_term:      'टर्म लोन योजना',
-    scheme_education: 'शैक्षिक ऋण योजना',
-    not_eligible:     'पात्र नहीं',
+    scheme_micro:      'माइक्रो फाइनेंस योजना',
+    scheme_aajeevika:  'आजीविका माइक्रो-फाइनेंस योजना',
+    scheme_udyam:      'उद्यम निधि योजना',
+    scheme_term:       'टर्म लोन योजना',
+    scheme_education:  'शैक्षिक ऋण योजना',
+    not_eligible:      'पात्र नहीं',
 
     // Partner locator filters
     filter_all:      'सभी',
@@ -501,32 +505,44 @@ function calculateEMI(principal, annualRate, tenureMonths, moratoriumMonths) {
 function recommendScheme({ projectType, cost, income }) {
   const type = projectType.toLowerCase();
 
-  // Education type → Educational Loan Scheme (cost + income both checked)
-  if (SCHEMES.edu && SCHEMES.edu.eligibility.projectType.includes(type)) {
-    if (cost <= SCHEMES.edu.maxProjectCost && income <= SCHEMES.edu.eligibility.maxAnnualIncome) {
-      return SCHEMES.edu;
-    }
+  // Helper: checks a scheme's cost bounds, income limit, and projectType eligibility.
+  // minProjectCost is optional (defaults to 0); all other fields are required.
+  function matches(scheme) {
+    if (!scheme) return false;
+    if (!scheme.eligibility.projectType.includes(type)) return false;
+    if (income > scheme.eligibility.maxAnnualIncome) return false;
+    const min = scheme.minProjectCost || 0;
+    return cost >= min && cost <= scheme.maxProjectCost;
   }
 
-  // Micro — checks its own projectType, cost cap, and income limit independently
-  if (SCHEMES.micro && SCHEMES.micro.eligibility.projectType.includes(type)) {
-    if (cost <= SCHEMES.micro.maxProjectCost && income <= SCHEMES.micro.eligibility.maxAnnualIncome) {
-      return SCHEMES.micro;
-    }
-  }
+  // 1. Education → always its own branch regardless of cost
+  if (matches(SCHEMES.edu)) return SCHEMES.edu;
 
-  // Term — checks its own projectType independently (not nested under micro)
-  if (SCHEMES.term && SCHEMES.term.eligibility.projectType.includes(type)) {
-    if (cost <= SCHEMES.term.maxProjectCost && income <= SCHEMES.term.eligibility.maxAnnualIncome) {
-      return SCHEMES.term;
-    }
-  }
+  // 2. Micro (business/agri, cost ≤ ₹1.25L loan cap / ₹1.40L project cap)
+  if (matches(SCHEMES.micro)) return SCHEMES.micro;
+
+  // 3. Aajeevika (business/agri, same cost bracket as micro but higher-rate programme)
+  //    Reached only if micro did not match — both share the same caps so in practice
+  //    micro always wins this band. Aajeevika is kept for completeness / future selector.
+  if (matches(SCHEMES.aajeevika)) return SCHEMES.aajeevika;
+
+  // 4. Udyam Nidhi (business/agri, ₹1.25L < cost ≤ ₹5L)
+  if (matches(SCHEMES.udyam)) return SCHEMES.udyam;
+
+  // 5. Term Loan (business/agri, ₹5L < cost ≤ ₹50L)
+  if (matches(SCHEMES.term)) return SCHEMES.term;
 
   return null;
 }
 
 // Maps scheme.id → translation key for the scheme's display name
-const schemeNameKey = { micro: 'scheme_micro', term: 'scheme_term', edu: 'scheme_education' };
+const schemeNameKey = {
+  micro:      'scheme_micro',
+  aajeevika:  'scheme_aajeevika',
+  udyam:      'scheme_udyam',
+  term:       'scheme_term',
+  edu:        'scheme_education',
+};
 
 // ----- Active recommended scheme (set on form submit) -----
 let currentScheme = null;

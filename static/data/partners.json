@@ -6,7 +6,7 @@
     "lat": 28.6139,
     "lng": 77.2090,
     "city": "New Delhi",
-    "schemeIds": ["micro", "term"],
+    "schemeIds": ["micro", "aajeevika", "term"],
     "acceptingApplications": true,
     "phone": "+91-XXXXXXXXXX"
   },
@@ -17,7 +17,7 @@
     "lat": 26.9124,
     "lng": 75.7873,
     "city": "Jaipur",
-    "schemeIds": ["micro", "edu"],
+    "schemeIds": ["micro", "aajeevika", "udyam", "edu"],
     "acceptingApplications": true,
     "phone": "+91-XXXXXXXXXX"
   },
@@ -28,7 +28,7 @@
     "lat": 19.0760,
     "lng": 72.8777,
     "city": "Mumbai",
-    "schemeIds": ["term", "edu"],
+    "schemeIds": ["term", "udyam", "edu"],
     "acceptingApplications": true,
     "phone": "+91-XXXXXXXXXX"
   },
@@ -39,7 +39,7 @@
     "lat": 22.5726,
     "lng": 88.3639,
     "city": "Kolkata",
-    "schemeIds": ["term", "micro"],
+    "schemeIds": ["term", "udyam", "micro"],
     "acceptingApplications": false,
     "phone": "+91-XXXXXXXXXX"
   },
@@ -50,7 +50,7 @@
     "lat": 13.0827,
     "lng": 80.2707,
     "city": "Chennai",
-    "schemeIds": ["term", "edu", "micro"],
+    "schemeIds": ["term", "udyam", "edu", "micro"],
     "acceptingApplications": true,
     "phone": "+91-XXXXXXXXXX"
   },
@@ -61,7 +61,7 @@
     "lat": 26.8467,
     "lng": 80.9462,
     "city": "Lucknow",
-    "schemeIds": ["micro", "term"],
+    "schemeIds": ["micro", "aajeevika", "udyam", "term"],
     "acceptingApplications": true,
     "phone": "+91-XXXXXXXXXX"
   },
@@ -72,7 +72,7 @@
     "lat": 23.2599,
     "lng": 77.4126,
     "city": "Bhopal",
-    "schemeIds": ["micro", "edu"],
+    "schemeIds": ["micro", "aajeevika", "edu"],
     "acceptingApplications": false,
     "phone": "+91-XXXXXXXXXX"
   },
@@ -83,7 +83,7 @@
     "lat": 17.3850,
     "lng": 78.4867,
     "city": "Hyderabad",
-    "schemeIds": ["micro", "term"],
+    "schemeIds": ["micro", "aajeevika", "udyam", "term"],
     "acceptingApplications": true,
     "phone": "+91-XXXXXXXXXX"
   },
@@ -94,7 +94,7 @@
     "lat": 23.0225,
     "lng": 72.5714,
     "city": "Ahmedabad",
-    "schemeIds": ["micro", "term"],
+    "schemeIds": ["micro", "aajeevika", "udyam", "term"],
     "acceptingApplications": true,
     "phone": "+91-XXXXXXXXXX"
   },
@@ -105,7 +105,7 @@
     "lat": 18.5204,
     "lng": 73.8567,
     "city": "Pune",
-    "schemeIds": ["micro"],
+    "schemeIds": ["micro", "aajeevika"],
     "acceptingApplications": true,
     "phone": "+91-XXXXXXXXXX"
   }

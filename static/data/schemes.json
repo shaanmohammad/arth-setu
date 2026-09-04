@@ -2,8 +2,8 @@
   "micro": {
     "id": "micro",
     "name": "Micro Finance Scheme",
-    "maxProjectCost": 155555,
-    "maxLoan": 140000,
+    "maxProjectCost": 140000,
+    "maxLoan": 125000,
     "rate": 6.5,
     "tenureMonths": 36,
     "moratoriumMonths": 3,
@@ -12,14 +12,31 @@
       "maxAnnualIncome": 500000,
       "projectType": ["business", "agriculture"]
     },
-    "description": "Ideal for small business and agricultural needs. Covers up to ₹1.40 lakh at a low interest rate with a short moratorium period."
+    "description": "Ideal for small business and agricultural needs. Project cost up to ₹1.40 lakh, loan up to ₹1.25 lakh at 6.5% p.a. over 3 years."
   },
-  "term": {
-    "id": "term",
-    "name": "Term Loan Scheme",
-    "maxProjectCost": 5555555,
-    "maxLoan": 5000000,
-    "rate": 8.0,
+  "aajeevika": {
+    "id": "aajeevika",
+    "name": "Aajeevika Micro-Finance Yojana",
+    "maxProjectCost": 140000,
+    "maxLoan": 125000,
+    "rate": 15.0,
+    "tenureMonths": 36,
+    "moratoriumMonths": 3,
+    "coveragePercent": 90,
+    "eligibility": {
+      "maxAnnualIncome": 500000,
+      "projectType": ["business", "agriculture"]
+    },
+    "description": "Supports small livelihood projects up to ₹1.40 lakh. Loan up to ₹1.25 lakh at 15% p.a. repayable over 3 years with a 3-month moratorium."
+  },
+  "udyam": {
+    "id": "udyam",
+    "name": "Udyam Nidhi Yojana",
+    "minProjectCost": 125001,
+    "maxProjectCost": 500000,
+    "maxLoan": 450000,
+    "rate": 13.0,
+    "rateNote": "13% for SC/ST; 15% for others",
     "tenureMonths": 60,
     "moratoriumMonths": 6,
     "coveragePercent": 90,
@@ -27,21 +44,37 @@
       "maxAnnualIncome": 500000,
       "projectType": ["business", "agriculture"]
     },
-    "description": "Suitable for medium-scale business and agri-allied projects. Covers up to ₹50 lakh with a 6-month repayment holiday."
+    "description": "For enterprise projects from ₹1.25 lakh up to ₹5 lakh. Loan up to ₹4.5 lakh at 13% p.a. (SC/ST) or 15% p.a. (others), repayable over 5 years."
+  },
+  "term": {
+    "id": "term",
+    "name": "Term Loan Scheme",
+    "minProjectCost": 500001,
+    "maxProjectCost": 5000000,
+    "maxLoan": 4500000,
+    "rate": 8.0,
+    "tenureMonths": 84,
+    "moratoriumMonths": 6,
+    "coveragePercent": 90,
+    "eligibility": {
+      "maxAnnualIncome": 500000,
+      "projectType": ["business", "agriculture"]
+    },
+    "description": "Suitable for medium-scale business and agri-allied projects. Project cost ₹5L–₹50L, loan up to ₹45 lakh at 8% p.a. over 7 years."
   },
   "edu": {
     "id": "edu",
     "name": "Educational Loan Scheme",
-    "maxProjectCost": 2222222,
-    "maxLoan": 2000000,
-    "rate": 8.0,
-    "tenureMonths": 60,
+    "maxProjectCost": 4000000,
+    "maxLoan": 4000000,
+    "rate": 6.5,
+    "tenureMonths": 144,
     "moratoriumMonths": 12,
     "coveragePercent": 90,
     "eligibility": {
       "maxAnnualIncome": 500000,
       "projectType": ["education"]
     },
-    "description": "Designed for higher education financing. Covers up to ₹20 lakh with a 12-month moratorium (or course duration + 1 year)."
+    "description": "Designed for higher education financing. Loan up to ₹40 lakh (or 90% of course fee) at 6.5% p.a., repayable over up to 12 years with a moratorium for course duration plus 1 year."
   }
 }
