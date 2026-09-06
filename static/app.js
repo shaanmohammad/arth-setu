@@ -153,6 +153,13 @@ const translations = {
     partner_away:        'away',
     partner_empty:       'No partners found for this filter.',
     partner_load_error:  'Could not load partner data.',
+    partner_view_all:    'View all {n} partners',
+    partner_show_less:   'Show less',
+    partner_rank:        '#{n} Nearest',
+    partner_open_now:    'Open',
+    partner_closed_now:  'Closed',
+    partner_km_away:     '{n} km away',
+    partner_top3_label:  'Top 3 Nearest Partners',
 
     // Location status
     loc_fetching:    '📡 Detecting your location…',
@@ -311,13 +318,20 @@ const translations = {
 
     // Partner cards / map popups
     partner_accepting:     'आवेदन स्वीकार कर रहे हैं',
-    partner_not_accepting: 'आवेदन स्वीकार नहीं',
+    partner_not_accepting: 'आवेदन स्वीकार नहीं एप्लीकेशन',
     partner_nearest:       'आपके सबसे निकट',
     partner_distance_km:   'दूरी',
     partner_schemes_label: 'योजनाएं',
     partner_away:          'दूर',
     partner_empty:         'इस फ़िल्टर के लिए कोई भागीदार नहीं मिला।',
     partner_load_error:    'भागीदार डेटा लोड नहीं हो सका।',
+    partner_view_all:      'सभी {n} भागीदार देखें',
+    partner_show_less:     'कम दिखाएं',
+    partner_rank:          '#{n} निकटतम',
+    partner_open_now:      'खुला',
+    partner_closed_now:    'बंद',
+    partner_km_away:       '{n} किमी दूर',
+    partner_top3_label:    'शीर्ष 3 निकटतम भागीदार',
 
     // Location status
     loc_fetching:    '📡 आपका स्थान पता लगाया जा रहा है…',
@@ -469,31 +483,108 @@ function renderPartners(typeFilter, schemeId) {
     return;
   }
 
-  listEl.innerHTML = filtered.map(p => {
-    const distHtml = p.distKm != null
-      ? `<p class="partner-distance">📏 ${p.distKm < 10 ? p.distKm.toFixed(1) : Math.round(p.distKm)} km ${t1.partner_away}</p>`
+  function fmtDist(p) {
+    if (p.distKm == null) return '';
+    const d = p.distKm < 10 ? p.distKm.toFixed(1) : Math.round(p.distKm);
+    return t1.partner_km_away.replace('{n}', d);
+  }
+
+  // All cards use the same featured design; rank badge only shown for top 3
+  function buildCard(p, rank) {
+    const typeSlug  = p.type.replace('-','').toLowerCase();
+    const isOpen    = p.acceptingApplications;
+    const dist      = fmtDist(p);
+    const rankBadge = rank <= 3
+      ? `<div class="pcard-rank">${t1.partner_rank.replace('{n}', rank)}</div>`
       : '';
     return `
-    <div class="partner-card${p.acceptingApplications ? '' : ' partner-card--closed'}">
-      <div class="partner-card-header">
-        <span class="partner-name">${p.name}</span>
-        <span class="partner-badge partner-badge--${p.type.replace('-','').toLowerCase()}">${p.type}</span>
+    <div class="pcard-featured pcard-featured--${typeSlug}${isOpen ? '' : ' pcard-featured--closed'}">
+      ${rankBadge}
+      <div class="pcard-top">
+        <div class="pcard-name">${p.name}</div>
+        <span class="partner-badge partner-badge--${typeSlug}">${p.type}</span>
       </div>
-      <p class="partner-city">📍 ${p.city}</p>
-      ${distHtml}
-      <p class="partner-phone">📞 ${p.phone}</p>
-      <p class="${p.acceptingApplications ? 'status-open' : 'status-closed'}">
-        ${p.acceptingApplications ? `✅ ${t1.partner_accepting}` : `🚫 ${t1.partner_not_accepting}`}
-      </p>
-      <div class="partner-loans">
+      <div class="pcard-meta">
+        <span class="pcard-meta-item">📍 ${p.city}</span>
+        ${dist ? `<span class="pcard-dist">${dist}</span>` : ''}
+      </div>
+      <div class="pcard-status pcard-status--${isOpen ? 'open' : 'closed'}">
+        ${isOpen
+          ? `<span class="pcard-dot pcard-dot--open"></span>${t1.partner_accepting}`
+          : `<span class="pcard-dot pcard-dot--closed"></span>${t1.partner_not_accepting}`}
+      </div>
+      <div class="pcard-phone">📞 ${p.phone}</div>
+      <div class="pcard-schemes">
         <span class="loan-tag-label">${t1.partner_schemes_label}</span>
         ${p.schemeIds.map(id => `<span class="loan-tag">${id}</span>`).join('')}
       </div>
     </div>`;
-  }).join('');
+  }
+
+  const top3 = filtered.slice(0, 3);
+  const rest  = filtered.slice(3);
+
+  // Always show top 3
+  const featuredHtml = `
+    <div class="partner-section-label">${t1.partner_top3_label}</div>
+    <div class="partner-featured-row">
+      ${top3.map((p, i) => buildCard(p, i + 1)).join('')}
+    </div>`;
+
+  // Rest hidden behind expand button — same card style, no rank badge
+  const restHtml = rest.length > 0 ? `
+    <div class="partner-expand-bar">
+      <button class="partner-expand-btn" id="partner-expand-btn">
+        ${t1.partner_view_all.replace('{n}', filtered.length)}
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+    <div class="partner-rest hidden" id="partner-rest">
+      <div class="partner-featured-row">
+        ${rest.map((p, i) => buildCard(p, i + 4)).join('')}
+      </div>
+      <div class="partner-expand-bar">
+        <button class="partner-expand-btn partner-expand-btn--less" id="partner-collapse-btn">
+          ${t1.partner_show_less}
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M4 10l4-4 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>` : '';
+
+  listEl.innerHTML = featuredHtml + restHtml;
+
+  // Wire expand / collapse buttons
+  const expandBtn   = document.getElementById('partner-expand-btn');
+  const collapseBtn = document.getElementById('partner-collapse-btn');
+  const restPanel   = document.getElementById('partner-rest');
+  if (expandBtn && restPanel) {
+    expandBtn.addEventListener('click', () => {
+      restPanel.classList.remove('hidden');
+      expandBtn.closest('.partner-expand-bar').classList.add('hidden');
+      // Animate newly visible cards
+      restPanel.querySelectorAll('.pcard-featured').forEach((card, i) => {
+        card.style.transitionDelay = (i * 80) + 'ms';
+        requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('card-visible')));
+      });
+      restPanel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  }
+  if (collapseBtn && restPanel) {
+    collapseBtn.addEventListener('click', () => {
+      restPanel.classList.add('hidden');
+      if (expandBtn) expandBtn.closest('.partner-expand-bar').classList.remove('hidden');
+    });
+  }
 
   // Apply current language so newly rendered data-i18n elements get translated
   applyLanguage(currentLang);
+
+  // Animate top-3 featured cards
+  animatePartnerCards();
 }
 
 function setLocationStatus(state) {
@@ -676,6 +767,15 @@ function applyLanguage(lang) {
     });
   });
 
+  // Hero title: manually render with accent span to preserve orange colour
+  const heroTitle = document.querySelector('.hero-title');
+  if (heroTitle && dict.hero_title) {
+    const parts = dict.hero_title.split(' ');
+    const first = parts.slice(0, -1).join(' ');
+    const last  = parts[parts.length - 1];
+    heroTitle.innerHTML = first + ' <span class="hero-title-accent">' + last + '</span>';
+  }
+
   // Update the lang toggle button label
   const toggle = document.getElementById('lang-toggle');
   if (toggle) {
@@ -749,10 +849,71 @@ function applyLanguage(lang) {
   document.documentElement.lang = lang === 'hi' ? 'hi' : 'en';
 }
 
+// ----- Scroll-reveal helper -----
+function initScrollReveal() {
+  // Mark elements that should animate on scroll
+  const revealSelectors = [
+    '.section-eyebrow',
+    '.section-title-row',
+    '.section-sub',
+    '.scheme-form',
+    '.section-inner h2',
+    '#feature-strip .feature-cards',
+    '.partner-filter-bar',
+    '#map',
+    '#footer p',
+  ];
+
+  // Attach .reveal class to each target
+  revealSelectors.forEach(sel => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      el.classList.add('reveal');
+      el.style.setProperty('--reveal-delay', (i * 80) + 'ms');
+    });
+  });
+
+  // Feature cards get their own stagger
+  document.querySelectorAll('.feature-card').forEach((el, i) => {
+    el.style.setProperty('--reveal-delay', (i * 120) + 'ms');
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // animate once
+      }
+    });
+  }, { threshold: 0.12 });
+
+  // Observe reveal elements
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Observe feature cards separately
+  document.querySelectorAll('.feature-card').forEach(el => {
+    el.classList.add('reveal'); // reuse same visible logic
+    observer.observe(el);
+  });
+}
+
+// Stagger-animate the top-3 featured cards (rest panel is hidden until expanded)
+function animatePartnerCards() {
+  // Select only the first .partner-featured-row (the always-visible top-3 row)
+  const topRow = document.querySelector('#partner-list .partner-featured-row');
+  if (!topRow) return;
+  topRow.querySelectorAll('.pcard-featured').forEach((card, i) => {
+    card.style.transitionDelay = (i * 100) + 'ms';
+    requestAnimationFrame(() => requestAnimationFrame(() => card.classList.add('card-visible')));
+  });
+}
+
 // ----- Language Toggle -----
 document.addEventListener('DOMContentLoaded', () => {
   // ----- Partner Locator Init -----
   initMap();
+
+  // ----- Scroll-reveal -----
+  initScrollReveal();
 
   // ----- Filter Bar -----
   document.querySelectorAll('.btn-filter').forEach(btn => {
@@ -1084,6 +1245,38 @@ document.addEventListener('DOMContentLoaded', () => {
     findMySchemeBtn.addEventListener('click', () => {
       document.getElementById('calc-results').classList.add('hidden')
       document.getElementById('scheme-result').scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  // ----- Hamburger menu -----
+  const hamburger = document.getElementById('nav-hamburger');
+  const navLinks  = document.getElementById('nav-links');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      hamburger.classList.toggle('open', isOpen);
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
+
+    // Close menu when a nav link is tapped
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open menu');
+      });
+    });
+
+    // Close menu when clicking outside the navbar
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#navbar')) {
+        navLinks.classList.remove('open');
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.setAttribute('aria-label', 'Open menu');
+      }
     });
   }
 });

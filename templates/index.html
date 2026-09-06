@@ -5,19 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arth Setu — Financial Scheme Guide</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-  <link rel="stylesheet" href="/static/style.css" />
+  <link rel="stylesheet" href="/static/style.css?v=8" />
 </head>
 <body>
 
   <!-- ===== Sticky Navbar ===== -->
   <nav id="navbar">
+    <!-- Left: brand -->
     <div class="nav-brand">Arth <span>Setu</span></div>
-    <ul class="nav-links">
+
+    <!-- Centre: desktop links -->
+    <ul class="nav-links" id="nav-links">
       <li><a href="#recommender" data-i18n="nav_recommender">Scheme Finder</a></li>
       <li><a href="#calculator" data-i18n="nav_calculator">EMI Calculator</a></li>
       <li><a href="#locator" data-i18n="nav_locator">Partner Locator</a></li>
     </ul>
-    <button id="lang-toggle" aria-label="Toggle language">EN | हिं</button>
+
+    <!-- Right: lang toggle + hamburger -->
+    <div class="nav-right">
+      <button id="lang-toggle" aria-label="Toggle language">EN | हिं</button>
+      <button id="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </nav>
 
   <!-- ===== Sticky Scheme Context Bar (hidden until recommendation) ===== -->
@@ -37,7 +47,7 @@
   <!-- ===== Hero Section ===== -->
   <section id="hero">
     <div class="hero-content">
-      <h1 class="hero-title" data-i18n="hero_title">Arth Setu</h1>
+      <h1 class="hero-title">Arth <span class="hero-title-accent">Setu</span></h1>
       <p class="hero-tagline" data-i18n="hero_tagline">
         Bridging beneficiaries with the right financial scheme
       </p>
@@ -300,6 +310,6 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="/static/app.js"></script>
+  <script src="/static/app.js?v=8"></script>
 </body>
 </html>
